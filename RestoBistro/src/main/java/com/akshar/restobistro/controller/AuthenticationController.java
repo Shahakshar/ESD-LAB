@@ -9,6 +9,8 @@ import com.akshar.restobistro.services.JwtService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RequestMapping("/auth")
 @RestController
 public class AuthenticationController {
@@ -36,5 +38,10 @@ public class AuthenticationController {
         LoginResponse loginResponse = new LoginResponse().setToken(jwtToken).setExpiresIn(jwtService.getExpirationTime());
 
         return ResponseEntity.ok(loginResponse);
+    }
+
+    @GetMapping("/users")
+    public ResponseEntity<List<User>> allUsers() {
+        return ResponseEntity.ok(authenticationService.allUsers());
     }
 }
