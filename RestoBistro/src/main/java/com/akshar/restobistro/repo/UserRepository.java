@@ -18,9 +18,13 @@ public interface UserRepository extends CrudRepository<User, Integer> {
 
     @Transactional
     @Modifying
-    @Query("UPDATE User u Set u.email = ?1, u.fullName = ?2, u.updatedAt=?3 where u.email = ?4")
+    @Query("UPDATE User u Set u.fullName = ?2, u.updatedAt=?3 where u.email = ?1")
     int updateUserByEmail(@Param("email") String email,
                     @Param("fullName") String fullName,
-                    @Param("date") Date date,
-                    @Param("oldEmail") String oldEmail);
+                    @Param("date") Date date);
+
+    @Transactional
+    @Modifying
+    @Query("DELETE from User u where u.email = ?1")
+    int deleteUserByEmail(@Param("email") String email);
 }

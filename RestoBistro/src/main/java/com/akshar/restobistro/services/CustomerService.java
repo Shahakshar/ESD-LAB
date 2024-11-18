@@ -22,7 +22,13 @@ public class CustomerService {
 
     @Transactional
     public boolean updateUser(String email, User updateUser) {
-        int value = userRepository.updateUserByEmail(updateUser.getEmail(), updateUser.getFullName(), new Date(), email);
+        int value = userRepository.updateUserByEmail(email, updateUser.getFullName(), new Date());
+        return value > 0;
+    }
+
+    @Transactional
+    public boolean deleteUserByEmail(String email) {
+        int value = userRepository.deleteUserByEmail(email);
         return value > 0;
     }
 
