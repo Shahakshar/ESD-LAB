@@ -3,6 +3,7 @@ package com.akshar.restobistro.controller;
 import com.akshar.restobistro.dto.ProductPriceDto;
 import com.akshar.restobistro.models.Product;
 import com.akshar.restobistro.services.ProductService;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,6 +17,12 @@ public class ProductController {
 
     public ProductController(ProductService productService) {
         this.productService = productService;
+    }
+
+    @PostMapping("/add")
+    public ResponseEntity<String> addProduct(@RequestBody @Valid Product product) {
+        String msg = productService.addProduct(product);
+        return ResponseEntity.ok(msg);
     }
 
     @PostMapping("/")

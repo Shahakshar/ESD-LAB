@@ -1,9 +1,5 @@
 package com.akshar.restobistro.response;
 
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
 public class LoginResponse {
     private String token;
 

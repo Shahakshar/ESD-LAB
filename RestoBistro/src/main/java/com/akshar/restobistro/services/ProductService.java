@@ -20,4 +20,9 @@ public class ProductService {
         List<Product> products = productRepository.findAllProducts(productPriceDto.getP1(), productPriceDto.getP2());
         return products.isEmpty() ? null : products;
     }
+
+    public String addProduct(Product product) {
+        productRepository.save(product);
+        return "Product added successfully";
+    }
 }
